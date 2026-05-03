@@ -40,7 +40,12 @@ export default function AnalyzerInput({ onResults }) {
         fetchRepoMetadata(owner, repo)
       ]);
 
-      const decoded = decodeURIComponent(escape(window.atob(readmeRes.data.content)));
+      // Robust Base64 to UTF-8 decoding
+      const base64 = readmeRes.data.content.replace(/\s/g, '');
+      const decoded = decodeURIComponent(atob(base64).split('').map(c => 
+        '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+      ).join(''));
+      
       setMarkdown(decoded);
       runAnalysis(decoded, metaRes);
     } catch (err) {

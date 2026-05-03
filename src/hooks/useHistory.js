@@ -30,9 +30,13 @@ export function useHistory() {
       }
     };
 
-    const updated = [newItem, ...history.filter(h => h.title !== newItem.title)].slice(0, 5);
-    setHistory(updated);
-    localStorage.setItem('odyn_history', JSON.stringify(updated));
+    try {
+      const updated = [newItem, ...history.filter(h => h.title !== newItem.title)].slice(0, 5);
+      setHistory(updated);
+      localStorage.setItem('odyn_history', JSON.stringify(updated));
+    } catch (e) {
+      console.warn('Could not save to history (likely storage full)', e);
+    }
   };
 
   const clearHistory = () => {

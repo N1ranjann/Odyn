@@ -44,9 +44,17 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
     }
   }, [results]);
 
-  if (!results) return null;
+  if (!results || !results.scores) {
+    return (
+      <div className="min-h-[60vh] flex flex-col items-center justify-center p-6 text-center">
+        <RotateCcw className="w-12 h-12 text-brand-charcoal/20 animate-spin mb-4" />
+        <h3 className="text-xl font-serif text-brand-charcoal mb-2">Preparing Analysis...</h3>
+        <p className="text-brand-charcoal/50 max-w-xs">One moment while we calculate your README scores.</p>
+      </div>
+    );
+  }
 
-  const { scores, issues, strengths, headings, sections, metrics = {}, comparison = [], repoMetadata = null } = results;
+  const { scores = {}, issues = [], strengths = [], headings = [], sections = {}, metrics = {}, comparison = [], repoMetadata = null } = results;
 
   const handleCopyMarkdown = async () => {
     await navigator.clipboard.writeText(markdown);
