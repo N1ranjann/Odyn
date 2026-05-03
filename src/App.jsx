@@ -9,7 +9,7 @@ import { Footer, FAQ } from './components/Footer'
 import { useHistory } from './hooks/useHistory'
 import LZString from 'lz-string'
 import { analyzeReadme } from './utils/analyzer'
-import { Sun, Moon } from 'lucide-react'
+import { Sun, Moon, RotateCcw } from 'lucide-react'
 
 function App() {
   const [mode, setMode] = useState('landing'); // 'landing', 'editor', 'results'
