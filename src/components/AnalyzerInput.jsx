@@ -36,7 +36,7 @@ export default function AnalyzerInput({ onResults }) {
       
       const { owner, repo } = repoInfo;
       const [readmeRes, metaRes] = await Promise.all([
-        axios.get(`https://api.github.com/repos/${owner}/${repo}/readme`, { timeout: 10000 }),
+        axios.get(`https://api.github.com/repos/${owner}/${repo}/readme`, { timeout: 20000 }),
         fetchRepoMetadata(owner, repo)
       ]);
 
@@ -49,7 +49,8 @@ export default function AnalyzerInput({ onResults }) {
       setMarkdown(decoded);
       runAnalysis(decoded, metaRes);
     } catch (err) {
-      if (err.response?.status === 404) setError("README not found — repo may be private or doesn't exist.");
+      if (err.code === 'ECONNABORTED') setError("GitHub is taking too long to respond. Please try again.");
+      else if (err.response?.status === 404) setError("README not found — repo may be private or doesn't exist.");
       else if (err.response?.status === 403) setError("GitHub API rate limit exceeded. Try again later.");
       else setError(err.message || "Failed to fetch README.");
     } finally {

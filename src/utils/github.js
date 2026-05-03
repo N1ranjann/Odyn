@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export async function fetchRepoMetadata(owner, repo) {
   try {
-    const response = await axios.get(`https://api.github.com/repos/${owner}/${repo}`);
+    const response = await axios.get(`https://api.github.com/repos/${owner}/${repo}`, { timeout: 20000 });
     return {
       stars: response.data.stargazers_count,
       forks: response.data.forks_count,
