@@ -189,13 +189,16 @@ function App() {
           </>
         )}
 
-        {mode === 'results' && results && (
+        {mode === 'results' && (
           <ResultsDashboard 
             results={results} 
             markdown={markdown} 
             isNightMode={isNightMode}
             setIsNightMode={setIsNightMode}
-            onReset={() => setMode('landing')}
+            onReset={() => {
+              setResults(null);
+              setMode('landing');
+            }}
             onShare={handleShare}
           />
         )}

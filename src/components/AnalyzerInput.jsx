@@ -36,7 +36,7 @@ export default function AnalyzerInput({ onResults }) {
       
       const { owner, repo } = repoInfo;
       const [readmeRes, metaRes] = await Promise.all([
-        axios.get(`https://api.github.com/repos/${owner}/${repo}/readme`),
+        axios.get(`https://api.github.com/repos/${owner}/${repo}/readme`, { timeout: 10000 }),
         fetchRepoMetadata(owner, repo)
       ]);
 
