@@ -15,6 +15,12 @@
 
 **Odyn** is an editorial-grade README analyzer designed to help developers create documentation that stands out. In the world of open source, your README is your project's first impression. Odyn ensures it’s a lasting one.
 
+<div align="center">
+  <br />
+  <img src="public/demo.webp" alt="Odyn Web App Demo" width="800" />
+  <br /><br />
+</div>
+
 ## ✨ Features
 
 - 🎯 **Instant Scoring**: Get a 0-100 quality score based on structure, readability, and visual appeal.
