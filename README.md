@@ -17,8 +17,22 @@
 
 <div align="center">
   <br />
-  <img src="public/demo.webp" alt="Odyn Web App Demo" width="800" />
-  <br /><br />
+  <h3>Application Previews</h3>
+  <table align="center">
+    <tr>
+      <td><img src="public/screenshots/screenshot-1.png" width="400" /></td>
+      <td><img src="public/screenshots/screenshot-2.png" width="400" /></td>
+    </tr>
+    <tr>
+      <td><img src="public/screenshots/screenshot-3.png" width="400" /></td>
+      <td><img src="public/screenshots/screenshot-4.png" width="400" /></td>
+    </tr>
+    <tr>
+      <td><img src="public/screenshots/screenshot-5.png" width="400" /></td>
+      <td><img src="public/screenshots/screenshot-6.png" width="400" /></td>
+    </tr>
+  </table>
+  <br />
 </div>
 
 ## ✨ Features
