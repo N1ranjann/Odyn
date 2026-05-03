@@ -1,14 +1,15 @@
-# <img src="public/logo.png" width="48" align="center" /> Odyn README Analyzer
+<div align="center">
+  <img src="public/logo.png" alt="Odyn Logo" width="300" />
 
-<p align="center">
-  <strong>"Better READMEs. More stars. Turn docs into downloads."</strong>
-</p>
+  <h1>Odyn README Analyzer</h1>
+  <p><strong>"Better READMEs. More stars. Turn docs into downloads."</strong></p>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
-  <img src="https://img.shields.io/badge/license-MIT-green.svg" />
-  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
-</p>
+  <p>
+    <img src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+    <img src="https://img.shields.io/badge/license-MIT-green.svg" />
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
+  </p>
+</div>
 
 ---
 
