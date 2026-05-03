@@ -43,16 +43,17 @@ export default function Hero() {
       <div className="z-10 text-center max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="inline-block py-1 px-3 rounded-full border border-brand-charcoal/10 text-brand-charcoal/60 text-sm font-medium tracking-wide mb-6 uppercase">
+          <span className="inline-block py-1 px-3 rounded-full border border-brand-charcoal/10 text-brand-charcoal/60 text-xs sm:text-sm font-medium tracking-wide mb-6 uppercase">
             README Quality Analyzer
           </span>
         </motion.div>
 
         <motion.h1
-          className="font-serif text-5xl md:text-7xl lg:text-8xl text-brand-charcoal tracking-tight leading-[1.1] mb-6"
+          className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-brand-charcoal tracking-tight leading-[1.1] mb-6"
           initial={{ opacity: 0, y: 40, filter: 'blur(15px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: "-100px" }}
