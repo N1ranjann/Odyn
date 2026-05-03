@@ -61,12 +61,19 @@ function App() {
   }, []);
 
   const handleResults = (analysisResults, md) => {
+    if (!analysisResults) return;
+    
+    // Set data FIRST
     setResults(analysisResults);
     setMarkdown(md);
     addToHistory(analysisResults, md);
-    setMode('results');
-    window.history.pushState({ mode: 'results' }, '');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Switch mode SECOND (ensures data is ready for render)
+    setTimeout(() => {
+      setMode('results');
+      window.history.pushState({ mode: 'results' }, '');
+      window.scrollTo(0, 0);
+    }, 10);
   };
 
   const handleSelectHistory = (item) => {
@@ -189,7 +196,7 @@ function App() {
           </>
         )}
 
-        {mode === 'results' && (
+        {mode === 'results' && results ? (
           <ResultsDashboard 
             results={results} 
             markdown={markdown} 
@@ -201,7 +208,12 @@ function App() {
             }}
             onShare={handleShare}
           />
-        )}
+        ) : mode === 'results' ? (
+          <div className="flex flex-col items-center justify-center min-h-[60vh] animate-pulse">
+            <div className="w-12 h-12 border-4 border-brand-terracotta border-t-transparent rounded-full animate-spin mb-4" />
+            <p className="text-brand-charcoal/50">Loading Report...</p>
+          </div>
+        ) : null}
       </main>
 
       <Footer onNavigate={setMode} />

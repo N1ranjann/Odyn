@@ -93,20 +93,14 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
           </motion.div>
         )}
 
-        {/* ── Section Title ── */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="text-center mb-16">
           <span className="inline-block py-1 px-3 rounded-full border border-brand-charcoal/10 text-brand-charcoal/60 text-sm font-medium tracking-wide mb-4 uppercase">
             Analysis Complete
           </span>
           <h2 className="font-serif text-3xl md:text-5xl text-brand-charcoal">
             Your README Score
           </h2>
-        </motion.div>
+        </div>
 
         {/* ══════════════════ SCORE OVERVIEW ══════════════════ */}
         <motion.div
