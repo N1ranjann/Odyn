@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-cream: var(--surface);
+  --color-brand-cream-dark: var(--surface-dark);
+  --color-brand-charcoal: var(--on-surface);
+  --color-brand-terracotta: #C8553D;
+  --color-brand-terracotta-light: #D97757;
+  --color-brand-sage: #588157;
+  --color-brand-peach: #F28F3B;
+  
+  --color-score-success: #2D5A27;
+  --color-score-success-bg: #E8F5E9;
+  --color-score-warning: #B45309;
+  --color-score-warning-bg: #FEF3C7;
+  --color-score-critical: #991B1B;
+  --color-score-critical-bg: #FEE2E2;
+
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Fraunces', ui-serif, Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --surface: #FAF9F6;
+  --surface-dark: #F0EFEA;
+  --on-surface: #1C1917;
+  --on-surface-muted: rgba(28, 25, 23, 0.6);
+  --panel-bg: rgba(255, 255, 255, 0.6);
+  --border-alpha: rgba(28, 25, 23, 0.05);
+
+  --score-success: #2D5A27;
+  --score-success-bg: #E8F5E9;
+  --score-warning: #B45309;
+  --score-warning-bg: #FEF3C7;
+  --score-critical: #991B1B;
+  --score-critical-bg: #FEE2E2;
+}
+
+.night-mode {
+  --surface: #1C1917;
+  --surface-dark: #141210;
+  --on-surface: #FAF9F6;
+  --on-surface-muted: rgba(250, 249, 246, 0.6);
+  --panel-bg: rgba(44, 40, 38, 0.6);
+  --border-alpha: rgba(250, 249, 246, 0.1);
+
+  --score-success: #4ADE80;
+  --score-success-bg: rgba(74, 222, 128, 0.1);
+  --score-warning: #FBBF24;
+  --score-warning-bg: rgba(251, 191, 36, 0.1);
+  --score-critical: #F87171;
+  --score-critical-bg: rgba(248, 113, 113, 0.1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--surface);
+    color: var(--on-surface);
+    font-family: var(--font-sans);
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--surface);
+    color: var(--on-surface);
+  }
+  
+  ::selection {
+    background-color: var(--color-brand-terracotta);
+    color: var(--surface);
+  }
+}
+
+/* Custom Utilities that might not be in standard tailwind */
+.glass-panel {
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-alpha);
+  transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.subtle-shadow {
+  box-shadow: 0 4px 24px -4px rgba(28, 25, 23, 0.05),
+              0 2px 8px -2px rgba(28, 25, 23, 0.02);
+}
+
+/* 🌙 Night Mode Overrides for 3rd party components */
+.night-mode .CodeMirror {
+  background-color: var(--surface) !important;
+  color: var(--on-surface) !important;
+  border-color: var(--border-alpha) !important;
+}
+
+.night-mode .CodeMirror-cursor {
+  border-left: 2px solid var(--on-surface) !important;
+}
+
+.night-mode .editor-toolbar {
+  background-color: var(--surface-dark) !important;
+  border-color: var(--border-alpha) !important;
+  opacity: 1 !important;
+}
+
+.night-mode .editor-toolbar button {
+  color: var(--on-surface) !important;
+}
+
+.night-mode .editor-toolbar button.active,
+.night-mode .editor-toolbar button:hover {
+  background-color: var(--border-alpha) !important;
+}
+
+.night-mode .editor-statusbar {
+  color: var(--on-surface-muted) !important;
+}
+
+/* Prose Night Mode */
+.night-mode .prose {
+  --tw-prose-body: var(--on-surface);
+  --tw-prose-headings: var(--on-surface);
+  --tw-prose-links: var(--color-brand-terracotta);
+  --tw-prose-bold: var(--on-surface);
+  --tw-prose-bullets: var(--on-surface-muted);
+  --tw-prose-quotes: var(--on-surface);
+  --tw-prose-code: var(--on-surface);
+  --tw-prose-hr: var(--border-alpha);
+  --tw-prose-pre-bg: var(--surface-dark);
+  --tw-prose-pre-code: var(--on-surface);
+}
+
