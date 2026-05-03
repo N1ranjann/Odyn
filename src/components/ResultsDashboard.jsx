@@ -66,53 +66,6 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
 
   return (
     <section ref={dashRef} id="results" className="py-24 px-6 bg-brand-cream relative">
-      {/* ── Global Header ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-brand-charcoal/5 px-6 py-4 flex items-center justify-between">
-        <button 
-          onClick={onReset}
-          className="flex items-center group"
-          title="Return to Landing"
-        >
-          <img src="/logo.png" alt="Odyn Logo" className="h-12 w-auto object-contain transition-transform group-hover:scale-105" />
-        </button>
-        
-        <div className="flex items-center gap-2 sm:gap-4">
-          <div className="text-xs font-bold text-brand-charcoal/40 uppercase tracking-widest hidden lg:block">Analysis Results</div>
-          
-          <button
-            onClick={() => {
-              onShare();
-              setShareCopied(true);
-              setTimeout(() => setShareCopied(false), 2000);
-            }}
-            className="flex items-center gap-2 px-4 py-2 bg-brand-charcoal text-brand-cream rounded-xl text-sm font-medium transition-all hover:scale-[1.02] active:scale-[0.98]"
-          >
-            {shareCopied ? <Check className="w-4 h-4" /> : <Share2 className="w-4 h-4" />}
-            <span className="hidden sm:inline">{shareCopied ? 'Copied!' : 'Share'}</span>
-          </button>
-
-          <button
-            onClick={() => setIsNightMode(!isNightMode)}
-            className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-brand-charcoal/5 transition-all group"
-            aria-label="Toggle Night Mode"
-          >
-            {isNightMode ? (
-              <Sun className="w-4 h-4 text-amber-400 group-hover:rotate-45 transition-transform duration-500" />
-            ) : (
-              <Moon className="w-4 h-4 text-brand-charcoal group-hover:-rotate-12 transition-transform duration-500" />
-            )}
-          </button>
-
-          <button 
-            onClick={onReset}
-            className="p-2 hover:bg-brand-charcoal/5 rounded-xl transition-colors md:hidden"
-            title="Reset"
-          >
-            <RotateCcw className="w-5 h-5 text-brand-charcoal/60" />
-          </button>
-        </div>
-      </header>
-
       <div className="max-w-5xl mx-auto pt-8">
         {/* ── Repo Metadata Header ── */}
         {repoMetadata && (

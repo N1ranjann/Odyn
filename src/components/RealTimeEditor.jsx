@@ -8,7 +8,7 @@ import CircularProgress from './CircularProgress';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-export default function RealTimeEditor({ initialValue, onBack, onSave }) {
+export default function RealTimeEditor({ initialValue, onBack, onSave, isNightMode, setIsNightMode }) {
   const [value, setValue] = useState(initialValue || '');
   const [results, setResults] = useState(null);
   const [viewMode, setViewMode] = useState(window.innerWidth < 1024 ? 'edit' : 'split'); // 'split', 'edit', 'preview'
