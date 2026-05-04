@@ -188,7 +188,7 @@ function AppContent() {
   }
 
   return (
-    <div className="min-h-screen bg-brand-cream font-sans selection:bg-brand-terracotta selection:text-white transition-colors duration-500">
+    <div className={`min-h-screen bg-brand-cream font-sans selection:bg-brand-terracotta selection:text-white transition-colors duration-500 ${isNightMode ? 'night-mode dark' : ''}`}>
       <header className="fixed top-0 left-0 right-0 z-50 bg-brand-cream/70 backdrop-blur-xl border-b border-brand-charcoal/5 px-4 sm:px-6 py-4 flex items-center justify-between">
         <button 
           onClick={() => {

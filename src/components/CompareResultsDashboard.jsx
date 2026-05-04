@@ -64,7 +64,7 @@ export default function CompareResultsDashboard({ resultsA, resultsB, markdownA,
               className={`relative flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold tracking-wide transition-all duration-300 z-10 ${
                 analysisMode === 'friendly' 
                   ? 'text-brand-terracotta' 
-                  : 'text-brand-charcoal/40 hover:text-brand-charcoal/60'
+                  : 'text-brand-charcoal/70 hover:text-brand-charcoal/90'
               }`}
             >
               {analysisMode === 'friendly' && (
@@ -81,8 +81,8 @@ export default function CompareResultsDashboard({ resultsA, resultsB, markdownA,
               onClick={() => analysisMode === 'friendly' && toggleMode()}
               className={`relative flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold tracking-wide transition-all duration-300 z-10 ${
                 analysisMode === 'strict' 
-                  ? 'text-[#F5F0E8]' 
-                  : 'text-brand-charcoal/40 hover:text-brand-charcoal/60'
+                  ? 'text-[#FAF9F6]' 
+                  : 'text-brand-charcoal/70 hover:text-brand-charcoal/90'
               }`}
             >
               {analysisMode === 'strict' && (
