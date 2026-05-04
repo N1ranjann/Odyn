@@ -33,7 +33,7 @@ export default function RealTimeEditor({ initialValue, onBack, onSave, isNightMo
   }), []);
 
   return (
-    <div className="h-screen flex flex-col bg-brand-cream dark:bg-brand-charcoal transition-colors duration-500 overflow-hidden">
+    <div className="h-screen flex flex-col bg-brand-cream transition-colors duration-500 overflow-hidden">
       {/* Editor Header */}
       <header className="h-[72px] glass-panel border-b border-brand-charcoal/10 dark:border-brand-cream/10 px-6 flex items-center justify-between z-50 shrink-0">
         <div className="flex items-center gap-4">
@@ -61,11 +61,11 @@ export default function RealTimeEditor({ initialValue, onBack, onSave, isNightMo
           
           <div className="flex lg:hidden items-center bg-brand-charcoal/5 dark:bg-brand-cream/5 rounded-xl p-1 border border-brand-charcoal/5">
             <button onClick={() => setViewMode('edit')}
-              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === 'edit' ? 'bg-brand-cream dark:bg-brand-charcoal text-brand-charcoal dark:text-brand-cream shadow-sm' : 'text-brand-charcoal/40 dark:text-brand-cream/40'}`}>
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === 'edit' ? 'bg-brand-cream text-brand-charcoal dark:text-brand-cream shadow-sm' : 'text-brand-charcoal/40 dark:text-brand-cream/40'}`}>
               EDIT
             </button>
             <button onClick={() => setViewMode('preview')}
-              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === 'preview' ? 'bg-brand-cream dark:bg-brand-charcoal text-brand-charcoal dark:text-brand-cream shadow-sm' : 'text-brand-charcoal/40 dark:text-brand-cream/40'}`}>
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === 'preview' ? 'bg-brand-cream text-brand-charcoal dark:text-brand-cream shadow-sm' : 'text-brand-charcoal/40 dark:text-brand-cream/40'}`}>
               PREVIEW
             </button>
           </div>
@@ -91,7 +91,7 @@ export default function RealTimeEditor({ initialValue, onBack, onSave, isNightMo
 
       <main className="flex-1 flex overflow-hidden">
         {/* Editor Side */}
-        <div className={`flex-1 flex flex-col border-r border-brand-charcoal/10 dark:border-brand-cream/10 bg-brand-cream dark:bg-brand-charcoal ${viewMode === 'preview' ? 'hidden' : ''}`}>
+        <div className={`flex-1 flex flex-col border-r border-brand-charcoal/10 dark:border-brand-cream/10 bg-brand-cream ${viewMode === 'preview' ? 'hidden' : ''}`}>
           <div className="flex-1 overflow-y-auto p-6 custom-mde-container scrollbar-thin">
             <SimpleMDE 
               value={value} 

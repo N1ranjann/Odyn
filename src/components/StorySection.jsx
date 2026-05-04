@@ -60,8 +60,8 @@ const SceneCard = ({ card }) => {
       ref={cardRef}
       variants={cardVariants}
       className="relative p-8 md:p-10 overflow-hidden flex flex-col justify-end min-h-[320px] 
-                 bg-brand-cream dark:bg-brand-charcoal 
-                 border border-brand-charcoal/5 dark:border-brand-cream/10 
+                 bg-white dark:bg-brand-cream-dark
+                 border border-brand-charcoal/5 dark:border-white/10 
                  rounded-2xl shadow-[0_4px_32px_rgba(28,25,23,0.06)] 
                  transition-transform duration-500 hover:-translate-y-2 group"
     >
@@ -71,10 +71,10 @@ const SceneCard = ({ card }) => {
         {card.numeral}
       </motion.div>
       <div className="relative z-10">
-        <h3 className="font-serif text-3xl md:text-4xl text-brand-charcoal mb-4 transition-colors group-hover:text-brand-terracotta">
+        <h3 className="font-serif text-3xl md:text-4xl text-brand-charcoal mb-4 transition-colors group-hover:text-brand-terracotta dark:text-brand-cream">
           {card.title}
         </h3>
-        <p className="font-sans text-lg md:text-xl text-brand-charcoal/70 leading-relaxed">
+        <p className="font-sans text-lg md:text-xl text-brand-charcoal/70 dark:text-brand-cream/70 leading-relaxed">
           {card.body}
         </p>
       </div>
@@ -105,7 +105,7 @@ const StorySection = React.memo(() => {
           </motion.div>
           
           <motion.h2 
-            className="font-serif text-4xl md:text-5xl lg:text-6xl text-brand-charcoal leading-[1.1] max-w-2xl"
+            className="font-serif text-4xl md:text-5xl lg:text-6xl text-brand-charcoal dark:text-brand-cream leading-[1.1] max-w-2xl"
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={{
@@ -145,7 +145,7 @@ const StorySection = React.memo(() => {
               const el = document.getElementById('analyzer-input');
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="font-serif text-xl italic text-brand-charcoal/60 hover:text-brand-terracotta transition-colors group"
+            className="font-serif text-xl italic text-brand-charcoal/60 dark:text-brand-cream/60 hover:text-brand-terracotta transition-colors group"
           >
             See what Odyn found in yours <span className="inline-block transition-transform group-hover:translate-x-1 ml-1">→</span>
           </button>

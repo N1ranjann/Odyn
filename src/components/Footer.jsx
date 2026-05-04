@@ -68,7 +68,7 @@ export function Footer({ onNavigate }) {
   };
 
   return (
-    <footer className="bg-brand-charcoal text-brand-cream pt-24 pb-12 px-6 transition-colors duration-500">
+    <footer className="bg-[#1C1917] text-[#FAF9F6] pt-24 pb-12 px-6 transition-colors duration-500">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
@@ -158,7 +158,7 @@ export function FAQ() {
             <div key={i} className="glass-panel rounded-2xl overflow-hidden">
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full flex items-center justify-between p-6 text-left hover:bg-brand-charcoal/5 transition-colors"
+                className="w-full flex items-center justify-between p-6 text-left hover:bg-brand-charcoal/5 dark:hover:bg-white/5 transition-colors"
               >
                 <span className="font-medium text-brand-charcoal">{faq.question}</span>
                 <ChevronDown className={`w-5 h-5 text-brand-charcoal/30 transition-transform duration-300 ${openIndex === i ? 'rotate-180' : ''}`} />

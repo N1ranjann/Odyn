@@ -126,7 +126,7 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
   const sortedIssues = [...criticalIssues, ...recommendedIssues, ...optionalIssues];
 
   return (
-    <section ref={dashRef} id="results" className="py-24 px-6 bg-brand-cream dark:bg-brand-charcoal relative overflow-hidden transition-colors duration-500 min-h-screen">
+    <section ref={dashRef} id="results" className="py-24 px-6 bg-brand-cream relative overflow-hidden transition-colors duration-500 min-h-screen">
       {/* Background Decorative Element */}
       <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-brand-terracotta/5 blur-[120px] rounded-full -z-10 pointer-events-none" />
       
@@ -327,18 +327,18 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
             const score = scores[key];
             const colors = getScoreColor(score);
             return (
-              <motion.div
-                key={key}
-                variants={fadeUp}
-                whileHover={{ y: -4, boxShadow: '0 12px 40px rgba(28,25,23,0.12)' }}
-                className="p-6 rounded-2xl glass-panel subtle-shadow transition-all duration-300 cursor-default"
-              >
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110" style={{ backgroundColor: colors.bg }}>
-                    <Icon className="w-5 h-5" style={{ color: colors.stroke }} />
-                  </div>
-                  <span className="text-[10px] font-bold tracking-widest text-brand-charcoal/40 dark:text-brand-cream/40 uppercase font-sans">{config.label}</span>
+            <motion.div
+              key={key}
+              variants={fadeUp}
+              whileHover={{ y: -4, boxShadow: '0 12px 40px rgba(28,25,23,0.12)' }}
+              className="p-6 rounded-2xl bg-white dark:bg-brand-cream-dark border border-brand-charcoal/5 dark:border-white/5 subtle-shadow transition-all duration-300 cursor-default"
+            >
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110" style={{ backgroundColor: colors.bg }}>
+                  <Icon className="w-5 h-5" style={{ color: colors.stroke }} />
                 </div>
+                <span className="text-[10px] font-bold tracking-widest text-brand-charcoal/40 dark:text-brand-cream/40 uppercase font-sans">{config.label}</span>
+              </div>
                 
                 <div className="flex items-end justify-between">
                   <div>
