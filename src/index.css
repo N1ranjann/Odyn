@@ -103,6 +103,15 @@
   border-color: var(--panel-border) !important;
 }
 
+.night-mode .cm-s-easymde .cm-comment {
+  background-color: rgba(250, 249, 246, 0.1) !important;
+  color: #EAB308 !important;
+}
+
+.night-mode .cm-s-easymde .cm-header {
+  color: var(--on-surface) !important;
+}
+
 .night-mode .CodeMirror-cursor {
   border-left: 2px solid var(--on-surface) !important;
 }
