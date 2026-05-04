@@ -331,13 +331,13 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
               key={key}
               variants={fadeUp}
               whileHover={{ y: -4, boxShadow: '0 12px 40px rgba(28,25,23,0.12)' }}
-              className="p-6 rounded-2xl bg-white dark:bg-brand-cream-dark border border-brand-charcoal/5 dark:border-white/5 subtle-shadow transition-all duration-300 cursor-default"
+              className="p-6 rounded-2xl bg-[var(--card-bg)] border border-brand-charcoal/5 dark:border-white/5 subtle-shadow transition-all duration-300 cursor-default"
             >
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110" style={{ backgroundColor: colors.bg }}>
                   <Icon className="w-5 h-5" style={{ color: colors.stroke }} />
                 </div>
-                <span className="text-[10px] font-bold tracking-widest text-brand-charcoal/40 dark:text-brand-cream/40 uppercase font-sans">{config.label}</span>
+                <span className="text-[10px] font-bold tracking-widest text-brand-charcoal/40 uppercase font-sans">{config.label}</span>
               </div>
                 
                 <div className="flex items-end justify-between">
@@ -345,13 +345,13 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
                     <CircularProgress score={score} size={68} strokeWidth={5} delay={0.2 + idx * 0.1} />
                   </div>
                   <div className="text-right">
-                    <span className="text-3xl font-serif text-brand-charcoal dark:text-brand-cream leading-none">{score}</span>
-                    <p className="text-[10px] font-bold text-brand-charcoal/30 dark:text-brand-cream/30 mt-1 uppercase tracking-tighter">Score</p>
+                    <span className="text-3xl font-serif text-brand-charcoal leading-none">{score}</span>
+                    <p className="text-[10px] font-bold text-brand-charcoal/30 mt-1 uppercase tracking-tighter">Score</p>
                   </div>
                 </div>
 
                 {key === 'readability' && (
-                  <p className="text-[10px] text-brand-charcoal/40 dark:text-brand-cream/40 mt-5 italic leading-tight border-t border-brand-charcoal/5 dark:border-brand-cream/5 pt-4">
+                  <p className="text-[10px] text-brand-charcoal/40 mt-5 italic leading-tight border-t border-brand-charcoal/5 pt-4">
                     Readability measures layout and scannability — not writing quality.
                   </p>
                 )}

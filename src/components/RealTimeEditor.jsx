@@ -59,19 +59,19 @@ export default function RealTimeEditor({ initialValue, onBack, onSave, isNightMo
             )}
           </button>
           
-          <div className="flex lg:hidden items-center bg-brand-charcoal/5 dark:bg-brand-cream/5 rounded-xl p-1 border border-brand-charcoal/5">
+          <div className="flex lg:hidden items-center bg-brand-charcoal/5 rounded-xl p-1 border border-brand-charcoal/5">
             <button onClick={() => setViewMode('edit')}
-              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === 'edit' ? 'bg-brand-cream text-brand-charcoal dark:text-brand-cream shadow-sm' : 'text-brand-charcoal/40 dark:text-brand-cream/40'}`}>
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === 'edit' ? 'bg-brand-cream text-brand-charcoal shadow-sm' : 'text-brand-charcoal/40'}`}>
               EDIT
             </button>
             <button onClick={() => setViewMode('preview')}
-              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === 'preview' ? 'bg-brand-cream text-brand-charcoal dark:text-brand-cream shadow-sm' : 'text-brand-charcoal/40 dark:text-brand-cream/40'}`}>
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === 'preview' ? 'bg-brand-cream text-brand-charcoal shadow-sm' : 'text-brand-charcoal/40'}`}>
               PREVIEW
             </button>
           </div>
 
-          <div className="hidden sm:flex items-center gap-2 bg-brand-charcoal/5 dark:bg-brand-cream/5 px-4 py-1.5 rounded-full border border-brand-charcoal/5 dark:border-brand-cream/5 mr-4">
-            <span className="text-xs font-bold text-brand-charcoal/40 dark:text-brand-cream/40 uppercase tracking-widest">Live Score:</span>
+          <div className="hidden sm:flex items-center gap-2 bg-brand-charcoal/5 px-4 py-1.5 rounded-full border border-brand-charcoal/5 mr-4">
+            <span className="text-xs font-bold text-brand-charcoal/40 uppercase tracking-widest">Live Score:</span>
             <span className="text-sm font-bold" style={{ color: 
               results?.scores.overall >= 80 ? 'var(--score-success)' : 
               results?.scores.overall >= 60 ? 'var(--score-warning)' : 'var(--score-critical)'
@@ -82,7 +82,7 @@ export default function RealTimeEditor({ initialValue, onBack, onSave, isNightMo
           
           <button 
             onClick={() => onSave(results, value)}
-            className="flex items-center gap-3 px-6 py-2.5 bg-brand-charcoal dark:bg-brand-cream text-brand-cream dark:text-brand-charcoal rounded-xl font-medium hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-brand-charcoal/10"
+            className="flex items-center gap-3 px-6 py-2.5 bg-brand-charcoal text-brand-cream rounded-xl font-medium hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-brand-charcoal/10"
           >
             <Save className="w-4 h-4" /> <span className="hidden sm:inline">Save Analysis</span>
           </button>
@@ -102,20 +102,20 @@ export default function RealTimeEditor({ initialValue, onBack, onSave, isNightMo
         </div>
 
         {/* Preview / Analysis Side */}
-        <div className={`flex-1 bg-brand-charcoal/[0.02] dark:bg-brand-cream/[0.02] overflow-y-auto scrollbar-thin ${viewMode === 'edit' ? 'hidden' : ''}`}>
+        <div className={`flex-1 bg-brand-charcoal/[0.02] overflow-y-auto scrollbar-thin ${viewMode === 'edit' ? 'hidden' : ''}`}>
           <div className="p-8 max-w-3xl mx-auto">
             {/* Live Score Widget */}
-            <div className="glass-panel rounded-3xl p-8 mb-8 flex items-center justify-between shadow-sm border border-brand-charcoal/5 dark:border-brand-cream/10 bg-brand-cream/80 dark:bg-brand-cream/[0.03]">
+            <div className="glass-panel rounded-3xl p-8 mb-8 flex items-center justify-between shadow-sm border border-brand-charcoal/5 bg-brand-cream/80">
               <div>
-                <h3 className="font-serif text-2xl text-brand-charcoal dark:text-brand-cream mb-2">Live Analysis</h3>
-                <p className="text-sm text-brand-charcoal/50 dark:text-brand-cream/50">Your changes are analyzed in real-time.</p>
+                <h3 className="font-serif text-2xl text-brand-charcoal mb-2">Live Analysis</h3>
+                <p className="text-sm text-brand-charcoal/50">Your changes are analyzed in real-time.</p>
               </div>
               <CircularProgress score={results?.scores.overall || 0} size={100} strokeWidth={8} />
             </div>
 
             {/* Quick Issues List */}
             <div className="space-y-4 mb-12">
-              <h4 className="text-[10px] font-bold text-brand-charcoal/40 dark:text-brand-cream/40 uppercase tracking-[0.2em] px-1">Critical Issues</h4>
+              <h4 className="text-[10px] font-bold text-brand-charcoal/40 uppercase tracking-[0.2em] px-1">Critical Issues</h4>
               {results?.issues.filter(i => i.type === 'critical').length === 0 ? (
                 <div className="bg-brand-sage/10 border border-brand-sage/20 text-brand-sage p-5 rounded-2xl text-sm flex items-center gap-3">
                   <Zap className="w-4 h-4" /> No critical issues! Your README is looking strong.
@@ -130,7 +130,7 @@ export default function RealTimeEditor({ initialValue, onBack, onSave, isNightMo
             </div>
 
             {/* Markdown Preview */}
-            <div className="glass-panel rounded-3xl p-10 shadow-sm bg-brand-cream/50 dark:bg-brand-cream/[0.02] border border-brand-charcoal/5 dark:border-brand-cream/5 prose dark:prose-invert max-w-none prose-h1:font-serif prose-h2:font-serif text-brand-charcoal dark:text-brand-cream">
+            <div className="glass-panel rounded-3xl p-10 shadow-sm bg-brand-cream/50 border border-brand-charcoal/5 prose max-w-none prose-h1:font-serif prose-h2:font-serif text-brand-charcoal">
               <ReactMarkdown remarkPlugins={[remarkGfm]}>
                 {value}
               </ReactMarkdown>

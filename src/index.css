@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-brand-cream: var(--surface);
   --color-brand-cream-dark: var(--surface-dark);
@@ -8,6 +10,7 @@
   --color-brand-terracotta-light: #D97757;
   --color-brand-sage: #588157;
   --color-brand-peach: #F28F3B;
+  --color-card-bg: var(--card-bg);
   
   --color-score-success: #2D5A27;
   --color-score-success-bg: #E8F5E9;
@@ -29,6 +32,7 @@
   --panel-bg: rgba(255, 255, 255, 0.7);
   --panel-border: rgba(28, 25, 23, 0.08);
   --border-alpha: rgba(28, 25, 23, 0.05);
+  --card-bg: #FFFFFF;
 
   --score-success: #2D5A27;
   --score-success-bg: rgba(107, 143, 113, 0.1);
@@ -46,6 +50,7 @@
   --panel-bg: rgba(38, 35, 32, 0.7);
   --panel-border: rgba(250, 249, 246, 0.1);
   --border-alpha: rgba(250, 249, 246, 0.1);
+  --card-bg: var(--surface-dark);
 
   --score-success: #88B28C;
   --score-success-bg: rgba(136, 178, 140, 0.1);

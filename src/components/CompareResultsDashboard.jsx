@@ -58,13 +58,13 @@ export default function CompareResultsDashboard({ resultsA, resultsB, markdownA,
         
         {/* ── Analysis Mode Toggle ── */}
         <div className="absolute top-4 right-4 md:right-6 z-30">
-          <div className="flex p-1 bg-brand-charcoal/5 dark:bg-white/5 rounded-full border border-brand-charcoal/10 dark:border-white/10 backdrop-blur-md">
+          <div className="flex p-1 bg-brand-charcoal/5 rounded-full border border-brand-charcoal/10 backdrop-blur-md">
             <button
               onClick={() => analysisMode === 'strict' && toggleMode()}
               className={`relative flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold tracking-wide transition-all duration-300 z-10 ${
                 analysisMode === 'friendly' 
                   ? 'text-brand-terracotta' 
-                  : 'text-brand-charcoal/40 dark:text-brand-cream/40 hover:text-brand-charcoal/60 dark:hover:text-brand-cream/60'
+                  : 'text-brand-charcoal/40 hover:text-brand-charcoal/60'
               }`}
             >
               {analysisMode === 'friendly' && (
@@ -82,7 +82,7 @@ export default function CompareResultsDashboard({ resultsA, resultsB, markdownA,
               className={`relative flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold tracking-wide transition-all duration-300 z-10 ${
                 analysisMode === 'strict' 
                   ? 'text-[#F5F0E8]' 
-                  : 'text-brand-charcoal/40 dark:text-brand-cream/40 hover:text-brand-charcoal/60 dark:hover:text-brand-cream/60'
+                  : 'text-brand-charcoal/40 hover:text-brand-charcoal/60'
               }`}
             >
               {analysisMode === 'strict' && (
