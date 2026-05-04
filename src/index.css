@@ -23,18 +23,19 @@
 
 :root {
   --surface: #FAF9F6;
-  --surface-dark: #F0EFEA;
+  --surface-dark: #F2F1EC;
   --on-surface: #1C1917;
   --on-surface-muted: rgba(28, 25, 23, 0.6);
-  --panel-bg: rgba(255, 255, 255, 0.6);
+  --panel-bg: rgba(255, 255, 255, 0.7);
+  --panel-border: rgba(28, 25, 23, 0.08);
   --border-alpha: rgba(28, 25, 23, 0.05);
 
   --score-success: #2D5A27;
-  --score-success-bg: #E8F5E9;
+  --score-success-bg: rgba(107, 143, 113, 0.1);
   --score-warning: #B45309;
   --score-warning-bg: #FEF3C7;
-  --score-critical: #991B1B;
-  --score-critical-bg: #FEE2E2;
+  --score-critical: #C1440E;
+  --score-critical-bg: rgba(193, 68, 14, 0.05);
 }
 
 .night-mode {
@@ -42,15 +43,16 @@
   --surface-dark: #141210;
   --on-surface: #FAF9F6;
   --on-surface-muted: rgba(250, 249, 246, 0.6);
-  --panel-bg: rgba(44, 40, 38, 0.6);
+  --panel-bg: rgba(38, 35, 32, 0.7);
+  --panel-border: rgba(250, 249, 246, 0.1);
   --border-alpha: rgba(250, 249, 246, 0.1);
 
-  --score-success: #4ADE80;
-  --score-success-bg: rgba(74, 222, 128, 0.1);
+  --score-success: #88B28C;
+  --score-success-bg: rgba(136, 178, 140, 0.1);
   --score-warning: #FBBF24;
   --score-warning-bg: rgba(251, 191, 36, 0.1);
-  --score-critical: #F87171;
-  --score-critical-bg: rgba(248, 113, 113, 0.1);
+  --score-critical: #E66A35;
+  --score-critical-bg: rgba(230, 106, 53, 0.1);
 }
 
 @layer base {
@@ -83,10 +85,10 @@
 /* Custom Utilities that might not be in standard tailwind */
 .glass-panel {
   background: var(--panel-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-alpha);
-  transition: background-color 0.5s ease, border-color 0.5s ease;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--panel-border);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .subtle-shadow {
@@ -98,7 +100,7 @@
 .night-mode .CodeMirror {
   background-color: var(--surface) !important;
   color: var(--on-surface) !important;
-  border-color: var(--border-alpha) !important;
+  border-color: var(--panel-border) !important;
 }
 
 .night-mode .CodeMirror-cursor {
@@ -107,7 +109,7 @@
 
 .night-mode .editor-toolbar {
   background-color: var(--surface-dark) !important;
-  border-color: var(--border-alpha) !important;
+  border-color: var(--panel-border) !important;
   opacity: 1 !important;
 }
 
@@ -117,11 +119,48 @@
 
 .night-mode .editor-toolbar button.active,
 .night-mode .editor-toolbar button:hover {
-  background-color: var(--border-alpha) !important;
+  background-color: var(--panel-border) !important;
+}
+
+.night-mode .editor-toolbar i {
+  color: var(--on-surface) !important;
 }
 
 .night-mode .editor-statusbar {
   color: var(--on-surface-muted) !important;
+  border-top-color: var(--panel-border) !important;
+}
+
+.night-mode .editor-preview {
+  background-color: var(--surface) !important;
+  color: var(--on-surface) !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(28, 25, 23, 0.1);
+  border-radius: 10px;
+}
+
+.night-mode ::webkit-scrollbar-thumb {
+  background: rgba(250, 249, 246, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(28, 25, 23, 0.2);
+}
+
+.night-mode ::webkit-scrollbar-thumb:hover {
+  background: rgba(250, 249, 246, 0.2);
 }
 
 /* Prose Night Mode */
@@ -138,3 +177,8 @@
   --tw-prose-pre-code: var(--on-surface);
 }
 
+
+/* Code Blocks in Dark Mode */
+.night-mode .prose pre, .dark .prose pre { background-color: rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(250, 249, 246, 0.1) !important; }
+.night-mode .prose code, .dark .prose code { color: #EAB308 !important; background-color: rgba(234, 179, 8, 0.1) !important; padding: 0.2em 0.4em; border-radius: 0.3em; }
+.night-mode .prose pre code, .dark .prose pre code { color: #FAF9F6 !important; background-color: transparent !important; padding: 0; }

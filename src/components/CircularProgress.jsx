@@ -3,25 +3,28 @@ import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 function getScoreColor(score) {
-  if (score >= 80) return { stroke: 'var(--score-success)', bg: 'var(--score-success-bg)', glow: 'rgba(34, 197, 94, 0.5)' };
-  if (score >= 60) return { stroke: 'var(--score-warning)', bg: 'var(--score-warning-bg)', glow: 'rgba(245, 158, 11, 0.5)' };
-  return { stroke: 'var(--score-critical)', bg: 'var(--score-critical-bg)', glow: 'rgba(239, 68, 68, 0.5)' };
+  if (score >= 75) return { stroke: '#6B8F71', bg: 'rgba(107, 143, 113, 0.1)', glow: 'rgba(107, 143, 113, 0.5)' };
+  if (score >= 50) return { stroke: '#D97706', bg: 'rgba(217, 119, 6, 0.1)', glow: 'rgba(217, 119, 6, 0.5)' };
+  return { stroke: '#C1440E', bg: 'rgba(193, 68, 14, 0.1)', glow: 'rgba(193, 68, 14, 0.5)' };
 }
 
 export default function CircularProgress({ score, size = 200, strokeWidth = 10, delay = 0, label }) {
-  const [displayScore, setDisplayScore] = useState(0);
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+  const [displayValue, setDisplayValue] = useState(0);
+
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const colors = getScoreColor(score);
 
   useEffect(() => {
-    const controls = animate(0, score, {
-      duration: 1.5,
+    const animation = animate(count, score, {
+      duration: 1.2,
       delay,
-      ease: [0.22, 1, 0.36, 1],
-      onUpdate: (v) => setDisplayScore(Math.round(v)),
+      ease: "easeOut",
+      onUpdate: (latest) => setDisplayValue(Math.round(latest))
     });
-    return () => controls.stop();
+    return () => animation.stop();
   }, [score, delay]);
 
   return (
@@ -35,9 +38,10 @@ export default function CircularProgress({ score, size = 200, strokeWidth = 10, 
           fill="none"
           stroke="currentColor"
           strokeWidth={strokeWidth}
-          className="text-brand-charcoal/[0.06]"
+          strokeOpacity={0.08}
+          className="text-brand-charcoal dark:text-brand-cream"
         />
-        {/* Glow Layer (Blurred duplicate) */}
+        {/* Main Progress Arc */}
         <motion.circle
           cx={size / 2}
           cy={size / 2}
@@ -47,12 +51,12 @@ export default function CircularProgress({ score, size = 200, strokeWidth = 10, 
           strokeWidth={strokeWidth}
           strokeLinecap="round"
           strokeDasharray={circumference}
-          initial={{ strokeDashoffset: circumference }}
-          animate={{ strokeDashoffset: circumference - (circumference * score) / 100 }}
-          transition={{ duration: 1.5, delay, ease: [0.22, 1, 0.36, 1] }}
-          style={{ filter: `blur(${strokeWidth}px)`, opacity: 0.4 }}
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: score / 100, opacity: 1 }}
+          transition={{ duration: 1, delay, ease: "easeOut" }}
+          style={{ originX: "50%", originY: "50%" }}
         />
-        {/* Main Progress */}
+        {/* Subtle Glow */}
         <motion.circle
           cx={size / 2}
           cy={size / 2}
@@ -62,18 +66,19 @@ export default function CircularProgress({ score, size = 200, strokeWidth = 10, 
           strokeWidth={strokeWidth}
           strokeLinecap="round"
           strokeDasharray={circumference}
-          initial={{ strokeDashoffset: circumference }}
-          animate={{ strokeDashoffset: circumference - (circumference * score) / 100 }}
-          transition={{ duration: 1.5, delay, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: score / 100, opacity: 0.3 }}
+          transition={{ duration: 1, delay, ease: "easeOut" }}
+          style={{ filter: `blur(${strokeWidth * 0.8}px)`, originX: "50%", originY: "50%" }}
         />
       </svg>
       {/* Center Content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="font-serif text-brand-charcoal" style={{ fontSize: size * 0.28 }}>
-          {displayScore}
+        <span className="font-serif text-brand-charcoal dark:text-brand-cream" style={{ fontSize: size * 0.28 }}>
+          {displayValue}
         </span>
         {label && (
-          <span className="text-brand-charcoal/50 text-xs font-medium mt-1">{label}</span>
+          <span className="text-brand-charcoal/50 dark:text-brand-cream/50 text-xs font-medium mt-1">{label}</span>
         )}
       </div>
     </div>

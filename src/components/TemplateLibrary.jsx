@@ -16,7 +16,7 @@ export default function TemplateLibrary({ onSelectTemplate }) {
   };
 
   return (
-    <section id="templates" className="py-24 px-6 bg-brand-cream/50">
+    <section id="templates" className="py-24 px-6 relative border-none -mt-[1px]">
       <div className="max-w-6xl mx-auto">
         <motion.div 
           className="text-center mb-16"

@@ -32,14 +32,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden px-6">
-      {/* Subtle Mesh Gradient Background effect */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-brand-terracotta/10 blur-[120px]" />
-        <div className="absolute top-[40%] -right-[10%] w-[60%] h-[60%] rounded-full bg-brand-sage/10 blur-[140px]" />
-        <div className="absolute -bottom-[20%] left-[20%] w-[40%] h-[40%] rounded-full bg-brand-peach/10 blur-[100px]" />
-      </div>
-
+    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden px-6 border-none">
       <div className="z-10 text-center max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -87,7 +80,7 @@ export default function Hero() {
             <ArrowDown className="w-5 h-5 transition-transform group-hover:translate-y-1" />
           </button>
 
-          <div className="h-6 flex items-center justify-center overflow-hidden">
+          <div className="h-8 mt-2 flex items-center justify-center overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.p
                 key={taglineIndex}
@@ -95,7 +88,7 @@ export default function Hero() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -20, opacity: 0 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="text-brand-charcoal/40 font-sans text-sm italic tracking-wide"
+                className="text-brand-charcoal/50 font-sans text-base sm:text-lg italic tracking-wide"
               >
                 "{taglines[taglineIndex]}"
               </motion.p>

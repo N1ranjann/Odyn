@@ -1,0 +1,7 @@
+[
+  { "owner": "facebook", "repo": "react", "type": "platform", "traits": ["toc", "contributing", "no-install"] },
+  { "owner": "tailwindlabs", "repo": "tailwindcss", "type": "library", "traits": ["install", "usage", "badges"] },
+  { "owner": "othneildrew", "repo": "Best-README-Template", "type": "template", "traits": ["all-sections"] },
+  { "owner": "sindresorhus", "repo": "awesome", "type": "list", "traits": ["no-install", "no-code-blocks"] },
+  { "owner": "freecodecamp", "repo": "freecodecamp", "type": "platform", "traits": ["toc", "contributing", "no-install"] }
+]

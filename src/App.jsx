@@ -2,30 +2,58 @@ import React, { useState, useEffect } from 'react'
 import Hero from './components/Hero'
 import AnalyzerInput from './components/AnalyzerInput'
 import ResultsDashboard from './components/ResultsDashboard'
+import CompareResultsDashboard from './components/CompareResultsDashboard'
 import TemplateLibrary from './components/TemplateLibrary'
 import RealTimeEditor from './components/RealTimeEditor'
 import HistoryList from './components/HistoryList'
 import { Footer, FAQ } from './components/Footer'
+import StorySection from './components/StorySection'
 import { useHistory } from './hooks/useHistory'
 import LZString from 'lz-string'
 import { analyzeReadme } from './utils/analyzer'
 import { Sun, Moon, RotateCcw } from 'lucide-react'
+import { AnalysisModeProvider, useAnalysisMode } from './context/AnalysisModeContext'
 
-function App() {
-  const [mode, setMode] = useState('landing'); // 'landing', 'editor', 'results'
+function AppContent() {
+  const [mode, setMode] = useState(() => localStorage.getItem('odyn_mode') || 'landing');
   const [results, setResults] = useState(null);
-  const [markdown, setMarkdown] = useState('');
-  const [isNightMode, setIsNightMode] = useState(false);
+  const [compareResults, setCompareResults] = useState(null);
+  const [compareMarkdown, setCompareMarkdown] = useState(null);
+  const [markdown, setMarkdown] = useState(() => localStorage.getItem('odyn_markdown') || '');
+  const [isNightMode, setIsNightMode] = useState(() => localStorage.getItem('odyn_theme') === 'dark');
   const { history, addToHistory, clearHistory } = useHistory();
+  const { analysisMode } = useAnalysisMode();
+
+  // Persist State
+  useEffect(() => {
+    localStorage.setItem('odyn_mode', mode);
+    localStorage.setItem('odyn_markdown', markdown);
+    localStorage.setItem('odyn_theme', isNightMode ? 'dark' : 'light');
+  }, [mode, markdown, isNightMode]);
 
   // Handle Theme Toggle
   useEffect(() => {
     if (isNightMode) {
-      document.documentElement.classList.add('night-mode');
+      document.documentElement.classList.add('night-mode', 'dark');
     } else {
-      document.documentElement.classList.remove('night-mode');
+      document.documentElement.classList.remove('night-mode', 'dark');
     }
   }, [isNightMode]);
+
+  // Handle Mode Change - Re-analyze if results are visible or missing
+  useEffect(() => {
+    if (mode === 'results' && markdown) {
+      const meta = results?.repoMetadata || null;
+      const newAnalysis = analyzeReadme(markdown, analysisMode, meta);
+      setResults(newAnalysis);
+    } else if (mode === 'compare' && compareMarkdown) {
+      const metaA = compareResults?.A?.repoMetadata || null;
+      const metaB = compareResults?.B?.repoMetadata || null;
+      const newAnalysisA = analyzeReadme(compareMarkdown.A, analysisMode, metaA);
+      const newAnalysisB = analyzeReadme(compareMarkdown.B, analysisMode, metaB);
+      setCompareResults({ A: newAnalysisA, B: newAnalysisB });
+    }
+  }, [analysisMode, mode, markdown, compareMarkdown]);
 
   // Handle Browser Back Button
   useEffect(() => {
@@ -37,8 +65,12 @@ function App() {
       }
     };
     window.addEventListener('popstate', handlePopState);
-    // Initial state
-    window.history.replaceState({ mode: 'landing' }, '');
+    
+    // If we have a hash, don't override the mode from localStorage yet
+    if (!window.location.hash) {
+      window.history.replaceState({ mode }, '');
+    }
+    
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
@@ -49,7 +81,7 @@ function App() {
       try {
         const decompressed = LZString.decompressFromEncodedURIComponent(hash);
         if (decompressed) {
-          const analysis = analyzeReadme(decompressed);
+          const analysis = analyzeReadme(decompressed, analysisMode);
           setResults(analysis);
           setMarkdown(decompressed);
           setMode('results');
@@ -62,13 +94,9 @@ function App() {
 
   const handleResults = (analysisResults, md) => {
     if (!analysisResults) return;
-    
-    // Set data FIRST
     setResults(analysisResults);
     setMarkdown(md);
-    addToHistory(analysisResults, md);
-    
-    // Switch mode SECOND (ensures data is ready for render)
+    addToHistory(analysisResults, md, 'single');
     setTimeout(() => {
       setMode('results');
       window.history.pushState({ mode: 'results' }, '');
@@ -76,13 +104,38 @@ function App() {
     }, 10);
   };
 
+  const handleCompareResults = (resPair, mdPair) => {
+    if (!resPair) return;
+    setCompareResults(resPair);
+    setCompareMarkdown(mdPair);
+    addToHistory(resPair, mdPair, 'compare');
+    setTimeout(() => {
+      setMode('compare');
+      window.history.pushState({ mode: 'compare' }, '');
+      window.scrollTo(0, 0);
+    }, 10);
+  };
+
   const handleSelectHistory = (item) => {
-    const analysis = analyzeReadme(item.markdown);
-    setResults(analysis);
-    setMarkdown(item.markdown);
-    setMode('results');
-    window.history.pushState({ mode: 'results' }, '');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (item.type === 'compare') {
+      const metaA = item.results?.A?.repoMetadata || null;
+      const metaB = item.results?.B?.repoMetadata || null;
+      const analysisA = analyzeReadme(item.markdown.A, analysisMode, metaA);
+      const analysisB = analyzeReadme(item.markdown.B, analysisMode, metaB);
+      setCompareResults({ A: analysisA, B: analysisB });
+      setCompareMarkdown(item.markdown);
+      setMode('compare');
+      window.history.pushState({ mode: 'compare' }, '');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const meta = item.results?.repoMetadata || null;
+      const analysis = analyzeReadme(item.markdown, analysisMode, meta);
+      setResults(analysis);
+      setMarkdown(item.markdown);
+      setMode('results');
+      window.history.pushState({ mode: 'results' }, '');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const handleSelectTemplate = (templateMd) => {
@@ -104,8 +157,6 @@ function App() {
       setMode('landing');
       window.history.pushState({ mode: 'landing' }, '');
     }
-    
-    // Allow time for landing page components to mount
     setTimeout(() => {
       const element = document.getElementById(id);
       if (element) {
@@ -118,22 +169,27 @@ function App() {
     return (
       <RealTimeEditor 
         initialValue={markdown} 
-        onBack={() => setMode('landing')} 
+        onBack={() => {
+          setMode('landing');
+          window.history.pushState({ mode: 'landing' }, '');
+        }} 
         isNightMode={isNightMode}
         setIsNightMode={setIsNightMode}
         onSave={(res, md) => {
-          setResults(res);
           setMarkdown(md);
+          setResults(res);
           addToHistory(res, md);
           setMode('results');
+          window.history.pushState({ mode: 'results' }, '');
+          window.scrollTo(0, 0);
         }}
       />
     );
   }
 
   return (
-    <div className="min-h-screen bg-brand-cream font-sans selection:bg-brand-terracotta selection:text-white">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-brand-cream/70 backdrop-blur-xl border-b border-brand-charcoal/5 px-4 sm:px-6 py-4 flex items-center justify-between transition-colors duration-500">
+    <div className="min-h-screen bg-brand-cream font-sans selection:bg-brand-terracotta selection:text-white transition-colors duration-500">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-brand-cream/70 backdrop-blur-xl border-b border-brand-charcoal/5 px-4 sm:px-6 py-4 flex items-center justify-between">
         <button 
           onClick={() => {
             if (mode === 'landing') window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -187,16 +243,44 @@ function App() {
 
       <main className="pt-20">
         {mode === 'landing' && (
-          <>
-            <Hero />
-            <AnalyzerInput onResults={handleResults} />
-            <HistoryList history={history} onSelect={handleSelectHistory} onClear={clearHistory} />
-            <TemplateLibrary onSelectTemplate={handleSelectTemplate} />
-            <FAQ />
-          </>
+          <div className="bg-brand-cream relative overflow-hidden">
+            <div className="absolute inset-0 pointer-events-none z-0">
+              <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[50%] bg-brand-terracotta/10 blur-[150px] rounded-full" />
+              <div className="absolute top-[20%] right-[-10%] w-[70%] h-[60%] bg-brand-peach/10 blur-[180px] rounded-full" />
+              <div className="absolute top-[50%] left-[-20%] w-[60%] h-[50%] bg-brand-terracotta/5 blur-[160px] rounded-full" />
+              <div className="absolute bottom-[-10%] right-[10%] w-[50%] h-[40%] bg-brand-peach/5 blur-[140px] rounded-full" />
+            </div>
+
+            <div className="relative z-10">
+              <Hero />
+              <StorySection />
+              <AnalyzerInput onResults={handleResults} onCompareResults={handleCompareResults} />
+              <HistoryList history={history} onSelect={handleSelectHistory} onClear={clearHistory} />
+              <TemplateLibrary onSelectTemplate={handleSelectTemplate} />
+              <FAQ />
+            </div>
+          </div>
         )}
 
-        {mode === 'results' && results ? (
+        {mode === 'compare' && compareResults ? (
+          <CompareResultsDashboard 
+            resultsA={compareResults.A}
+            resultsB={compareResults.B}
+            markdownA={compareMarkdown.A}
+            markdownB={compareMarkdown.B}
+            isNightMode={isNightMode}
+            setIsNightMode={setIsNightMode}
+            onReset={() => {
+              setCompareResults(null);
+              setMode('landing');
+            }}
+          />
+        ) : mode === 'compare' ? (
+          <div className="flex flex-col items-center justify-center min-h-[60vh] animate-pulse">
+            <div className="w-12 h-12 border-4 border-brand-terracotta border-t-transparent rounded-full animate-spin mb-4" />
+            <p className="text-brand-charcoal/50">Loading Comparison...</p>
+          </div>
+        ) : mode === 'results' && results ? (
           <ResultsDashboard 
             results={results} 
             markdown={markdown} 
@@ -218,6 +302,14 @@ function App() {
 
       <Footer onNavigate={setMode} />
     </div>
+  )
+}
+
+function App() {
+  return (
+    <AnalysisModeProvider>
+      <AppContent />
+    </AnalysisModeProvider>
   )
 }
 

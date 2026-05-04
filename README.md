@@ -1,100 +1,101 @@
-<div align="center">
-  <img src="public/logo.png" alt="Odyn Logo" width="300" />
+# Odyn README Analyzer
 
-  <h1>Odyn README Analyzer</h1>
-  <p><strong>"Better READMEs. More stars. Turn docs into downloads."</strong></p>
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg?cacheSeconds=2592000)](https://github.com/N1ranjann/Odyn)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Aesthetics](https://img.shields.io/badge/design-premium-terracotta.svg)](#-design-aesthetics)
 
-  <p>
-    <img src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
-    <img src="https://img.shields.io/badge/license-MIT-green.svg" />
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
-  </p>
-</div>
+**Odyn** is a sophisticated, editorial-grade README analyzer built for developers who care about first impressions. In the competitive landscape of open-source software, your documentation is often the only thing standing between a visitor and a contributor. Odyn bridges that gap by providing instant, actionable feedback on your project's structure, readability, and visual appeal. It uses a heuristic engine to evaluate how well your documentation communicates its value proposition to potential users and contributors.
 
----
-
-**Odyn** is an editorial-grade README analyzer designed to help developers create documentation that stands out. In the world of open source, your README is your project's first impression. Odyn ensures it’s a lasting one.
-
-<div align="center">
-  <br />
-  <h3>Application Previews</h3>
-  <table align="center">
-    <tr>
-      <td><img src="public/screenshots/screenshot-1.png" width="400" /></td>
-      <td><img src="public/screenshots/screenshot-2.png" width="400" /></td>
-    </tr>
-    <tr>
-      <td><img src="public/screenshots/screenshot-3.png" width="400" /></td>
-      <td><img src="public/screenshots/screenshot-4.png" width="400" /></td>
-    </tr>
-    <tr>
-      <td><img src="public/screenshots/screenshot-5.png" width="400" /></td>
-      <td><img src="public/screenshots/screenshot-6.png" width="400" /></td>
-    </tr>
-  </table>
-  <br />
-</div>
+## Table of Contents
+- [Features](#-features)
+- [Analysis Heuristics](#-analysis-heuristics)
+- [Quick Start](#-quick-start)
+- [Usage Examples](#-usage-examples)
+- [Installation](#-installation)
+- [Design Aesthetics](#-design-aesthetics)
+- [Contributing](#-contributing)
+- [License](#-license)
 
 ## ✨ Features
 
-- 🎯 **Instant Scoring**: Get a 0-100 quality score based on structure, readability, and visual appeal.
-- 🔍 **Actionable Insights**: Specific feedback on missing sections, heading hierarchy, and formatting.
-- 🎨 **Live Editor**: Improve your markdown in real-time with a live score widget.
-- 📦 **Professional Templates**: Kickstart your documentation with battle-tested templates.
-- 🌓 **Night Mode**: A sleek, theme-aware UI designed for developers.
-- 🔗 **Easy Sharing**: Share your analysis reports with a single URL.
-
-## 🚀 Quick Start
-
-### 1. Analyze by URL
-Simply paste any public GitHub repository URL (e.g., `facebook/react`) to fetch and analyze its README instantly.
-
-### 2. Paste Markdown
-Have a draft ready? Paste your markdown directly into the analyzer for a deep-dive audit.
-
-### 3. Use Templates
-Select from a variety of templates (Simple, Professional, Detailed) and customize them in our live editor.
-
-## 🛠️ Tech Stack
-
-- **Frontend**: [React 18](https://react.dev/) + [Vite](https://vitejs.dev/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Analysis Logic**: Custom heuristic engine for markdown parsing.
+- 🎯 **Instant Scoring**: Receive a 0-100 quality score across four critical documentation pillars.
+- 🔍 **Editorial Feedback**: Get specific suggestions on missing sections, heading hierarchy, and scannability.
+- 🎨 **Real-Time Editor**: Refine your markdown in our live side-by-side editor with a dynamic score widget.
+- 📦 **Canonical Recognition**: Built-in awareness for industry-standard documentation patterns (React, Tailwind, etc.).
+- 🌗 **Adaptive UI**: High-end minimalist design with full dark mode support and fluid animations.
+- 📊 **Comparison Mode**: Compare two repositories side-by-side to identify quality gaps and "bridge the gap."
 
 ## 📊 Analysis Heuristics
 
-Odyn evaluates your README across four primary pillars:
+Odyn evaluates your documentation through a multi-dimensional heuristic engine:
 
 | Pillar | Focus |
 | :--- | :--- |
-| **Structure** | Heading hierarchy, table of contents, and logical flow. |
-| **Readability** | Sentence complexity, paragraph length, and clarity. |
-| **Completeness** | Presence of Install, Usage, License, and Contributing sections. |
-| **Visuals** | Usage of images, badges, code blocks, and formatting. |
+| **Structure** | Validates heading levels (H1-H6) and proper hierarchy. |
+| **Readability** | Analyzes sentence length, paragraph density, and heading distribution. |
+| **Completeness** | Checks for vital sections like Installation, Usage, and License. |
+| **Visuals** | Evaluates the use of badges, code blocks, images, and formatting. |
+
+## 🚀 Quick Start
+
+1. **Analyze by URL**: Paste any public GitHub repository URL to fetch and audit its README instantly.
+2. **Paste Markdown**: Use the "Paste Markdown" tab to analyze drafts before they are even committed.
+3. **Template Library**: Choose from professional templates and customize them directly in the app.
+
+## 🛠️ Usage Examples
+
+Once you've analyzed a repo, you can:
+- **Identify Gaps**: See exactly which sections (e.g., Contributing or Table of Contents) are missing.
+- **Refine Layout**: Use the feedback to break up "walls of text" into scannable headings.
+- **Export Reports**: Share a direct link to your analysis report with your team or community.
+
+```javascript
+// Example of how Odyn calculates a sub-score
+const sVisual = (images.length > 0 ? 40 : 0) + 
+                (badges.length > 0 ? 30 : 0) + 
+                (codeBlocks.length > 0 ? 30 : 0);
+```
 
 ## 📦 Installation
 
-To run Odyn locally:
+To run Odyn on your local machine:
 
 ```bash
 # Clone the repository
 git clone https://github.com/N1ranjann/Odyn.git
 
+# Navigate to directory
+cd Odyn
+
 # Install dependencies
 npm install
 
-# Run development server
+# Start development server
 npm run dev
 ```
 
+## 🎨 Design Aesthetics
+
+Odyn is designed with a "Premium Minimalist" aesthetic, utilizing:
+- **Sage & Terracotta Palette**: A curated, sophisticated color scheme that feels both professional and inviting.
+- **Framer Motion**: Smooth, fluid transitions and state changes that make the interface feel alive.
+- **Glassmorphism**: Modern backdrop blurs and subtle shadow work for a premium look and feel.
+
+## 🤝 Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
-<p align="center">
-  Built with ❤️ by <a href="https://github.com/N1ranjann">Niranjan Remesh</a>
-</p>
+Built with ❤️ by [Niranjan Remesh](https://github.com/N1ranjann)

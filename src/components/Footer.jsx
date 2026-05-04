@@ -138,7 +138,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = React.useState(null);
 
   return (
-    <section id="faq" className="py-24 px-6 bg-brand-cream/30">
+    <section id="faq" className="py-24 px-6 relative border-none -mt-[1px]">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
           <motion.h2 
