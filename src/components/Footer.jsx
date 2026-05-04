@@ -68,14 +68,14 @@ export function Footer({ onNavigate }) {
   };
 
   return (
-    <footer className="bg-[#1C1917] text-[#FAF9F6] pt-24 pb-12 px-6 transition-colors duration-500">
+    <footer className="bg-brand-cream-dark text-brand-charcoal pt-24 pb-12 px-6 transition-colors duration-500 border-t border-brand-charcoal/5">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-3 mb-6">
               <img src="/logo.png" alt="Odyn Logo" className="h-16 w-auto object-contain" />
             </div>
-            <p className="text-brand-cream/50 max-w-sm mb-8 leading-relaxed">
+            <p className="text-brand-charcoal/60 max-w-sm mb-8 leading-relaxed">
               The editorial-grade README analyzer designed to help developers create documentation that stands out. Build better open source, one README at a time.
             </p>
             <div className="flex gap-4">
@@ -88,7 +88,7 @@ export function Footer({ onNavigate }) {
                   className="w-10 h-10 rounded-full bg-brand-cream/5 flex items-center justify-center hover:bg-brand-terracotta transition-colors group"
                   aria-label={link.name}
                 >
-                  <link.icon className="w-5 h-5 text-brand-cream/60 group-hover:text-brand-cream transition-colors" />
+                  <link.icon className="w-5 h-5 text-brand-charcoal/40 group-hover:text-brand-terracotta transition-colors" />
                 </a>
               ))}
             </div>
@@ -96,7 +96,7 @@ export function Footer({ onNavigate }) {
 
           <div>
             <h4 className="font-serif text-lg mb-6">Product</h4>
-            <ul className="space-y-4 text-brand-cream/40 text-sm">
+            <ul className="space-y-4 text-brand-charcoal/60 text-sm">
               <li><a href="#analyzer-input" onClick={(e) => handleScroll(e, 'analyzer-input')} className="hover:text-brand-terracotta transition-colors">Analyzer</a></li>
               <li><a href="#templates" onClick={(e) => handleScroll(e, 'templates')} className="hover:text-brand-terracotta transition-colors">Templates</a></li>
               <li><a href="#history" onClick={(e) => handleScroll(e, 'history')} className="hover:text-brand-terracotta transition-colors">History</a></li>
@@ -106,7 +106,7 @@ export function Footer({ onNavigate }) {
 
           <div>
             <h4 className="font-serif text-lg mb-6">Connect</h4>
-            <ul className="space-y-4 text-brand-cream/40 text-sm">
+            <ul className="space-y-4 text-brand-charcoal/60 text-sm">
               <li><a href="https://github.com/N1ranjann" target="_blank" className="hover:text-brand-terracotta transition-colors">GitHub</a></li>
               <li><a href="https://www.linkedin.com/in/niranjan-remesh-030477277/" target="_blank" className="hover:text-brand-terracotta transition-colors">LinkedIn</a></li>
               <li><a href="tel:+919061970617" className="hover:text-brand-terracotta transition-colors">+91 9061970617</a></li>
@@ -116,17 +116,17 @@ export function Footer({ onNavigate }) {
         </div>
 
         <div className="pt-8 border-t border-brand-cream/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-brand-cream/50 text-xs tracking-wide">
-            © 2026 Odyn Analyzer. Built by <span className="text-brand-cream font-medium">Niranjan Remesh</span>
+          <p className="text-brand-charcoal/60 text-xs tracking-wide">
+            © 2026 Odyn Analyzer. Built by <span className="text-brand-charcoal font-medium">Niranjan Remesh</span>
           </p>
-          <div className="flex items-center gap-4 text-xs text-brand-cream/30">
-            <span className="flex items-center gap-1.5 text-brand-cream/50">
+          <div className="flex items-center gap-4 text-xs text-brand-charcoal/40">
+            <span className="flex items-center gap-1.5 text-brand-charcoal/60">
               Made with <Heart className="w-3.5 h-3.5 text-brand-terracotta fill-brand-terracotta" /> & <Coffee className="w-3.5 h-3.5 text-amber-400" />
             </span>
-            <span className="w-1 h-1 rounded-full bg-brand-cream/20" />
-            <a href="#" className="hover:text-brand-cream transition-colors">Privacy Policy</a>
-            <span className="w-1 h-1 rounded-full bg-brand-cream/10" />
-            <a href="#" className="hover:text-brand-cream transition-colors">Terms</a>
+            <span className="w-1 h-1 rounded-full bg-brand-charcoal/20" />
+            <a href="#" className="hover:text-brand-charcoal transition-colors">Privacy Policy</a>
+            <span className="w-1 h-1 rounded-full bg-brand-charcoal/10" />
+            <a href="#" className="hover:text-brand-charcoal transition-colors">Terms</a>
           </div>
         </div>
       </div>
@@ -169,7 +169,7 @@ export function FAQ() {
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <div className="p-6 pt-0 text-sm text-brand-charcoal/60 leading-relaxed">
+                <div className="p-6 pt-0 text-sm text-brand-charcoal/80 leading-relaxed">
                   {faq.answer}
                 </div>
               </motion.div>

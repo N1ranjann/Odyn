@@ -61,12 +61,12 @@ const SceneCard = ({ card }) => {
       variants={cardVariants}
       className="relative p-8 md:p-10 overflow-hidden flex flex-col justify-end min-h-[320px] 
                  bg-[var(--card-bg)]
-                 border border-brand-charcoal/5 dark:border-white/10 
+                 border border-brand-charcoal/10 
                  rounded-2xl shadow-[0_4px_32px_rgba(28,25,23,0.06)] 
                  transition-transform duration-500 hover:-translate-y-2 group"
     >
       <motion.div 
-        className="absolute top-0 right-4 text-[140px] font-serif leading-none text-brand-terracotta/[0.15] dark:text-brand-terracotta/[0.1] select-none pointer-events-none transition-transform duration-700 group-hover:scale-105"
+        className="absolute top-0 right-4 text-[140px] font-serif leading-none text-brand-terracotta/[0.15] select-none pointer-events-none transition-transform duration-700 group-hover:scale-105"
       >
         {card.numeral}
       </motion.div>

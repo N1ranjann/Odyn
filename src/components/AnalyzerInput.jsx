@@ -132,15 +132,15 @@ export default function AnalyzerInput({ onResults, onCompareResults }) {
               <Globe className="w-5 h-5 text-brand-charcoal/30" />
             </div>
             <input type="text" value={inputData.url} onChange={(e) => setInputData({ ...inputData, url: e.target.value })}
-              placeholder="e.g. johndoe/my-project"
-              className="w-full bg-brand-cream border border-brand-charcoal/10 rounded-2xl py-4 pl-12 pr-4 text-brand-charcoal font-sans text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-brand-terracotta/50 focus:border-brand-terracotta transition-all shadow-sm placeholder:text-brand-charcoal/20"
+              placeholder={appMode === 'compare' ? "Owner/Repo" : "e.g. facebook/react"}
+              className="w-full bg-[var(--card-bg)] border-2 border-brand-charcoal/20 rounded-2xl py-5 pl-12 pr-6 outline-none focus:border-brand-terracotta/30 focus:bg-brand-cream transition-all text-brand-charcoal placeholder:text-brand-charcoal/40"
               disabled={loading} />
           </motion.div>
         ) : (
           <motion.div key="markdown" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }} className="relative group">
             <textarea value={inputData.markdown} onChange={(e) => setInputData({ ...inputData, markdown: e.target.value })}
               placeholder="# Enter markdown..."
-              className="w-full h-48 sm:h-64 bg-brand-cream border border-brand-charcoal/10 rounded-2xl p-6 text-brand-charcoal font-mono text-sm focus:outline-none focus:ring-2 focus:ring-brand-sage/50 focus:border-brand-sage transition-all shadow-inner resize-y placeholder:text-brand-charcoal/20" />
+              className="w-full h-48 sm:h-64 bg-[var(--card-bg)] border-2 border-brand-charcoal/20 rounded-2xl p-6 text-brand-charcoal font-mono text-sm focus:outline-none focus:border-brand-sage/30 transition-all resize-y placeholder:text-brand-charcoal/40" />
           </motion.div>
         )}
       </AnimatePresence>
@@ -168,19 +168,19 @@ export default function AnalyzerInput({ onResults, onCompareResults }) {
                 className="absolute left-1 top-1 bottom-1 w-[calc(50%-4px)] rounded-full transition-transform duration-300 ease-in-out"
                 style={{
                   transform: appMode === 'compare' ? 'translateX(100%)' : 'translateX(0)',
-                  backgroundColor: appMode === 'single' ? '#F5F0E8' : '#1C1917',
-                  borderColor: appMode === 'single' ? '#C1440E' : '#1C1917'
+                  backgroundColor: appMode === 'single' ? 'var(--on-surface)' : 'var(--brand-terracotta)',
+                  borderColor: 'var(--on-surface)'
                 }}
               />
               <button 
                 onClick={() => setAppMode('single')}
-                className={`relative z-10 w-28 sm:w-32 py-2 text-sm font-bold uppercase tracking-wider rounded-full transition-colors ${appMode === 'single' ? 'text-brand-terracotta' : 'text-brand-charcoal/60'}`}
+                className={`relative z-10 w-28 sm:w-32 py-2 text-sm font-bold uppercase tracking-wider rounded-full transition-colors ${appMode === 'single' ? 'text-brand-cream' : 'text-brand-charcoal/60'}`}
               >
                 Single
               </button>
               <button 
                 onClick={() => setAppMode('compare')}
-                className={`relative z-10 w-28 sm:w-32 py-2 text-sm font-bold uppercase tracking-wider rounded-full transition-colors ${appMode === 'compare' ? 'text-[#F5F0E8]' : 'text-brand-charcoal/60'}`}
+                className={`relative z-10 w-28 sm:w-32 py-2 text-sm font-bold uppercase tracking-wider rounded-full transition-colors ${appMode === 'compare' ? 'text-brand-cream' : 'text-brand-charcoal/60'}`}
               >
                 Compare
               </button>
@@ -188,11 +188,11 @@ export default function AnalyzerInput({ onResults, onCompareResults }) {
             <div className="h-14 sm:h-12 flex items-center justify-center max-w-lg text-center mt-2">
               <AnimatePresence mode="wait">
                 {appMode === 'single' ? (
-                  <motion.span key="single" initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 5 }} className="block text-base sm:text-lg text-brand-charcoal/60">
+                  <motion.span key="single" initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 5 }} className="block text-lg sm:text-xl text-brand-charcoal/80">
                     Analyze a single repository to discover its strengths and areas for improvement.
                   </motion.span>
                 ) : (
-                  <motion.span key="compare" initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 5 }} className="block text-base sm:text-lg text-brand-charcoal/60">
+                  <motion.span key="compare" initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 5 }} className="block text-lg sm:text-xl text-brand-charcoal/80">
                     Compare two repositories side-by-side to identify gaps and actionable ways Repo A can match Repo B's quality.
                   </motion.span>
                 )}

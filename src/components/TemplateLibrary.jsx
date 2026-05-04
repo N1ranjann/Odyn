@@ -48,14 +48,14 @@ export default function TemplateLibrary({ onSelectTemplate }) {
               transition={{ delay: idx * 0.1 }}
               className="glass-panel rounded-3xl p-8 subtle-shadow hover:shadow-xl transition-all group flex flex-col h-full"
             >
-              <div className="mb-6 h-40 bg-brand-charcoal/5 rounded-2xl overflow-hidden relative border border-brand-charcoal/5">
+              <div className="mb-6 h-40 bg-brand-cream-dark/30 rounded-2xl overflow-hidden relative border border-brand-charcoal/5">
                 <div className="absolute inset-0 p-4 transform group-hover:scale-105 transition-transform duration-500 origin-top">
-                  <div className="text-[6px] text-brand-charcoal/30 font-mono leading-tight whitespace-pre-wrap select-none pointer-events-none">
+                  <div className="text-[6px] text-brand-charcoal/40 font-mono leading-tight whitespace-pre-wrap select-none pointer-events-none">
                     {template.markdown.substring(0, 400)}...
                   </div>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-cream/80 via-transparent to-transparent" />
-                <div className="absolute top-4 right-4 glass-panel px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-brand-charcoal/50">
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-cream-dark/80 via-transparent to-transparent" />
+                <div className="absolute top-4 right-4 bg-brand-cream/50 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-brand-charcoal/60">
                   {template.category}
                 </div>
               </div>

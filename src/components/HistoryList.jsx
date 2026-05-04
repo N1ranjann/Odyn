@@ -32,7 +32,7 @@ export default function HistoryList({ history, onSelect, onClear }) {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
               onClick={() => onSelect(item)}
-              className="group w-full flex items-center gap-6 p-6 bg-brand-cream/20 rounded-3xl border border-brand-charcoal/5 hover:border-brand-terracotta/20 hover:bg-brand-cream/40 transition-all text-left"
+              className="group w-full flex items-center gap-6 p-6 bg-brand-charcoal/5 rounded-3xl border border-brand-charcoal/10 hover:border-brand-terracotta/20 hover:bg-brand-charcoal/10 transition-all text-left shadow-sm"
             >
               {item.type === 'compare' ? (
                 <div className="w-14 h-14 rounded-2xl flex flex-col items-center justify-center bg-brand-charcoal/5 border border-brand-charcoal/10">
@@ -42,8 +42,8 @@ export default function HistoryList({ history, onSelect, onClear }) {
                 </div>
               ) : (
                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center font-serif text-xl font-bold ${
-                  item.score >= 80 ? 'bg-green-100 text-green-700' : 
-                  item.score >= 60 ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'
+                  item.score >= 80 ? 'bg-[var(--score-success-bg)] text-[var(--score-success)]' : 
+                  item.score >= 60 ? 'bg-[var(--score-warning-bg)] text-[var(--score-warning)]' : 'bg-[var(--score-critical-bg)] text-[var(--score-critical)]'
                 }`}>
                   {item.score}
                 </div>

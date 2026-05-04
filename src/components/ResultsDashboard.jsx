@@ -199,7 +199,7 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
             className="mb-8 py-3 px-4 rounded-xl flex items-start gap-3 border border-[#6B8F71]/25 bg-[#6B8F71]/10 border-l-[3px] border-l-[#6B8F71]"
           >
             <BadgeCheck size={16} className="text-[#6B8F71] flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-brand-charcoal/80 dark:text-brand-cream/90 leading-relaxed font-sans">
+            <p className="text-sm text-brand-charcoal/80 leading-relaxed font-sans">
               {recognitionBanner.text}
             </p>
           </motion.div>
@@ -213,17 +213,17 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
             className="mb-8 p-4 rounded-xl flex items-center gap-3 border border-brand-sage/20 bg-brand-sage/5"
           >
             <Lightbulb className="w-4 h-4 text-brand-sage" />
-            <p className="text-sm text-brand-charcoal/70 dark:text-brand-cream/70 font-sans">
+            <p className="text-sm text-brand-charcoal/70 font-sans">
               Your README follows patterns similar to <span className="font-bold text-brand-sage">{traitMatch.owner}/{traitMatch.repo}</span>.
             </p>
           </motion.div>
         )}
 
         <div className="text-center mb-16">
-          <span className="inline-block py-1 px-3 rounded-full border border-brand-charcoal/10 dark:border-white/10 text-brand-charcoal/60 dark:text-brand-cream/60 text-sm font-medium tracking-wide mb-4 uppercase">
+          <span className="inline-block py-1 px-3 rounded-full border border-brand-charcoal/10 text-brand-charcoal/60 text-sm font-medium tracking-wide mb-4 uppercase">
             Analysis Complete
           </span>
-          <h2 className="font-serif text-3xl md:text-5xl text-brand-charcoal dark:text-brand-cream">
+          <h2 className="font-serif text-3xl md:text-5xl text-brand-charcoal">
             Your README Score
           </h2>
         </div>
@@ -251,13 +251,13 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
         >
           <div className="flex justify-between items-end mb-4">
             <div>
-              <h4 className="text-[10px] font-bold tracking-[0.2em] text-brand-charcoal/40 dark:text-brand-cream/40 uppercase mb-1">Overview</h4>
+              <h4 className="text-[10px] font-bold tracking-[0.2em] text-brand-charcoal/40 uppercase mb-1">Overview</h4>
               <p className="text-sm font-medium text-[var(--score-success)]">{results.passedRules?.length || 0} passing</p>
             </div>
             <p className="text-sm font-medium text-[var(--score-critical)] text-right">{issues?.length || 0} to improve</p>
           </div>
           
-          <div className="h-2 w-full bg-brand-charcoal/5 dark:bg-brand-cream/5 rounded-full flex overflow-hidden">
+          <div className="h-2 w-full bg-brand-charcoal/5 rounded-full flex overflow-hidden">
             <motion.div 
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
@@ -331,7 +331,7 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
               key={key}
               variants={fadeUp}
               whileHover={{ y: -4, boxShadow: '0 12px 40px rgba(28,25,23,0.12)' }}
-              className="p-6 rounded-2xl bg-[var(--card-bg)] border border-brand-charcoal/5 dark:border-white/5 subtle-shadow transition-all duration-300 cursor-default"
+              className="p-6 rounded-2xl bg-[var(--card-bg)] border border-brand-charcoal/5 subtle-shadow transition-all duration-300 cursor-default"
             >
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110" style={{ backgroundColor: colors.bg }}>
@@ -399,13 +399,13 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
                           <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${config.textColor}`} style={{ backgroundColor: config.pillBg }}>
                             <Icon className="w-4 h-4" />
                           </div>
-                          <h4 className="font-serif text-xl text-brand-charcoal dark:text-brand-cream">{issue.label}</h4>
+                          <h4 className="font-serif text-xl text-brand-charcoal">{issue.label}</h4>
                         </div>
                         <span className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border-current border-opacity-20 ${config.textColor} bg-white/80 dark:bg-white/20 backdrop-blur-sm border`}>
                           {config.label}
                         </span>
                       </div>
-                      <p className="text-brand-charcoal/70 dark:text-brand-cream/70 text-sm leading-relaxed max-w-3xl">
+                      <p className="text-brand-charcoal/70 text-sm leading-relaxed max-w-3xl">
                         {issue.message}
                       </p>
                     </div>
@@ -432,7 +432,7 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
         {/* ══════════════════ STRUCTURE VISUALIZATION ══════════════════ */}
         {headings.length > 0 && (
           <motion.div className="mb-16" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h3 className="font-serif text-2xl text-brand-charcoal dark:text-brand-cream mb-6">Document Structure</h3>
+            <h3 className="font-serif text-2xl text-brand-charcoal mb-6">Document Structure</h3>
             <div className="glass-panel rounded-2xl p-6 overflow-x-auto">
               {headings.map((h, i) => {
                 const indent = (h.level - 1) * 28;
@@ -468,8 +468,8 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
 
         {/* ══════════════════ COMPARISON ══════════════════ */}
         <motion.div className="mb-20" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <h3 className="font-serif text-2xl text-brand-charcoal dark:text-brand-cream mb-2">Compare to Popular Repos</h3>
-          <p className="text-sm text-brand-charcoal/50 dark:text-brand-cream/50 mb-8">See how your README stacks up against well-known open-source projects.</p>
+          <h3 className="font-serif text-2xl text-brand-charcoal mb-2">Compare to Popular Repos</h3>
+          <p className="text-sm text-brand-charcoal/50 mb-8">See how your README stacks up against well-known open-source projects.</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {comparison.map((repo, i) => {
               const diff = scores.overall - repo.overall;
@@ -482,8 +482,8 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
                   transition={{ delay: i * 0.1 }}
                   className="glass-panel rounded-2xl p-6 subtle-shadow text-center hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group"
                 >
-                  <p className="text-[10px] font-bold tracking-widest text-brand-charcoal/60 dark:text-brand-cream/60 mb-2 uppercase">{repo.owner}</p>
-                  <p className="font-serif text-xl text-brand-charcoal dark:text-brand-cream mb-6">{repo.name}</p>
+                  <p className="text-[10px] font-bold tracking-widest text-brand-charcoal/60 mb-2 uppercase">{repo.owner}</p>
+                  <p className="font-serif text-xl text-brand-charcoal mb-6">{repo.name}</p>
                   
                   <div className="flex justify-center mb-6">
                     <div className="relative">

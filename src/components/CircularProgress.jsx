@@ -39,7 +39,7 @@ export default function CircularProgress({ score, size = 200, strokeWidth = 10, 
           stroke="currentColor"
           strokeWidth={strokeWidth}
           strokeOpacity={0.08}
-          className="text-brand-charcoal dark:text-brand-cream"
+          className="text-brand-charcoal"
         />
         {/* Main Progress Arc */}
         <motion.circle
@@ -74,11 +74,11 @@ export default function CircularProgress({ score, size = 200, strokeWidth = 10, 
       </svg>
       {/* Center Content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="font-serif text-brand-charcoal dark:text-brand-cream" style={{ fontSize: size * 0.28 }}>
+        <span className="font-serif text-brand-charcoal" style={{ fontSize: size * 0.28 }}>
           {displayValue}
         </span>
         {label && (
-          <span className="text-brand-charcoal/50 dark:text-brand-cream/50 text-xs font-medium mt-1">{label}</span>
+          <span className="text-brand-charcoal/50 text-xs font-medium mt-1">{label}</span>
         )}
       </div>
     </div>
