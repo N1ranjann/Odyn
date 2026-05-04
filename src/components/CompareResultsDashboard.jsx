@@ -63,14 +63,14 @@ export default function CompareResultsDashboard({ resultsA, resultsB, markdownA,
               onClick={() => analysisMode === 'strict' && toggleMode()}
               className={`relative flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold tracking-wide transition-all duration-300 z-10 ${
                 analysisMode === 'friendly' 
-                  ? 'text-brand-terracotta' 
-                  : 'text-brand-charcoal/70 hover:text-brand-charcoal/90'
+                  ? 'text-brand-terracotta dark:text-brand-terracotta-light' 
+                  : 'text-brand-charcoal/50 hover:text-brand-charcoal/80 transition-colors'
               }`}
             >
               {analysisMode === 'friendly' && (
                 <motion.div 
                   layoutId="compare-mode-pill" 
-                  className="absolute inset-0 bg-brand-cream rounded-full -z-10 border border-brand-terracotta shadow-sm"
+                  className="absolute inset-0 bg-brand-cream dark:bg-white/10 rounded-full -z-10 border border-brand-terracotta shadow-sm"
                   transition={{ type: 'spring', bounce: 0.2, duration: 0.25 }}
                 />
               )}
@@ -81,14 +81,14 @@ export default function CompareResultsDashboard({ resultsA, resultsB, markdownA,
               onClick={() => analysisMode === 'friendly' && toggleMode()}
               className={`relative flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold tracking-wide transition-all duration-300 z-10 ${
                 analysisMode === 'strict' 
-                  ? 'text-[#FAF9F6]' 
-                  : 'text-brand-charcoal/70 hover:text-brand-charcoal/90'
+                  ? 'text-brand-cream' 
+                  : 'text-brand-charcoal/50 hover:text-brand-charcoal/80 transition-colors'
               }`}
             >
               {analysisMode === 'strict' && (
                 <motion.div 
                   layoutId="compare-mode-pill" 
-                  className="absolute inset-0 bg-[#1C1917] rounded-full -z-10 border border-[#1C1917] shadow-sm"
+                  className="absolute inset-0 bg-[#1C1917] dark:bg-brand-charcoal rounded-full -z-10 border border-[#1C1917] dark:border-white/20 shadow-sm"
                   transition={{ type: 'spring', bounce: 0.2, duration: 0.25 }}
                 />
               )}

@@ -168,7 +168,7 @@ export default function AnalyzerInput({ onResults, onCompareResults }) {
                 className="absolute left-1 top-1 bottom-1 w-[calc(50%-4px)] rounded-full transition-transform duration-300 ease-in-out"
                 style={{
                   transform: appMode === 'compare' ? 'translateX(100%)' : 'translateX(0)',
-                  backgroundColor: appMode === 'single' ? 'var(--on-surface)' : 'var(--brand-terracotta)',
+                  backgroundColor: appMode === 'single' ? 'var(--on-surface)' : 'var(--color-brand-terracotta)',
                   borderColor: 'var(--on-surface)'
                 }}
               />

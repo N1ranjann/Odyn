@@ -138,14 +138,14 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
               onClick={() => analysisMode === 'strict' && toggleMode()}
               className={`relative flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold tracking-wide transition-all duration-300 z-10 ${
                 analysisMode === 'friendly' 
-                  ? 'text-brand-terracotta' 
-                  : 'text-brand-charcoal/40 dark:text-brand-cream/40 hover:text-brand-charcoal/60 dark:hover:text-brand-cream/60'
+                  ? 'text-brand-terracotta dark:text-brand-terracotta-light' 
+                  : 'text-brand-charcoal/40 hover:text-brand-charcoal/60 transition-colors'
               }`}
             >
               {analysisMode === 'friendly' && (
                 <motion.div 
                   layoutId="mode-pill" 
-                  className="absolute inset-0 bg-brand-cream rounded-full -z-10 border border-brand-terracotta shadow-sm"
+                  className="absolute inset-0 bg-brand-cream dark:bg-white/10 rounded-full -z-10 border border-brand-terracotta shadow-sm"
                   transition={{ type: 'spring', bounce: 0.2, duration: 0.25 }}
                 />
               )}
@@ -156,14 +156,14 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
               onClick={() => analysisMode === 'friendly' && toggleMode()}
               className={`relative flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold tracking-wide transition-all duration-300 z-10 ${
                 analysisMode === 'strict' 
-                  ? 'text-[#F5F0E8]' 
-                  : 'text-brand-charcoal/40 dark:text-brand-cream/40 hover:text-brand-charcoal/60 dark:hover:text-brand-cream/60'
+                  ? 'text-brand-cream' 
+                  : 'text-brand-charcoal/40 hover:text-brand-charcoal/60 transition-colors'
               }`}
             >
               {analysisMode === 'strict' && (
                 <motion.div 
                   layoutId="mode-pill" 
-                  className="absolute inset-0 bg-[#1C1917] rounded-full -z-10 border border-[#1C1917] shadow-sm"
+                  className="absolute inset-0 bg-[#1C1917] dark:bg-brand-charcoal rounded-full -z-10 border border-[#1C1917] dark:border-white/20 shadow-sm"
                   transition={{ type: 'spring', bounce: 0.2, duration: 0.25 }}
                 />
               )}
@@ -182,9 +182,9 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
           >
             <div className="flex items-center gap-3">
               <img src={repoMetadata.ownerAvatar} alt="Owner" className="w-8 h-8 rounded-full border border-brand-charcoal/10" />
-              <span className="font-medium text-brand-charcoal dark:text-brand-cream">{repoMetadata.language || 'Unknown Language'}</span>
+              <span className="font-medium text-brand-charcoal">{repoMetadata.language || 'Unknown Language'}</span>
             </div>
-            <div className="flex items-center gap-6 text-sm text-brand-charcoal/60 dark:text-brand-cream/60">
+            <div className="flex items-center gap-6 text-sm text-brand-charcoal/60">
               <span className="flex items-center gap-1.5"><Star className="w-4 h-4" /> {repoMetadata.stars?.toLocaleString() || '0'}</span>
               <span className="flex items-center gap-1.5"><GitFork className="w-4 h-4" /> {repoMetadata.forks?.toLocaleString() || '0'}</span>
             </div>
@@ -306,7 +306,7 @@ export default function ResultsDashboard({ results, markdown, onReset, onShare, 
                   <div className="w-5 h-5 rounded-full bg-[var(--score-success)]/10 flex items-center justify-center flex-shrink-0">
                     <Check className="w-3 h-3 text-[var(--score-success)]" />
                   </div>
-                  <span className="text-sm text-brand-charcoal/80 dark:text-brand-cream/80 font-medium">
+                  <span className="text-sm text-brand-charcoal/80 font-medium">
                     {rule.label}
                   </span>
                 </div>
